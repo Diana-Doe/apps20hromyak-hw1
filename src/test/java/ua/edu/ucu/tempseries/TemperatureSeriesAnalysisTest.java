@@ -141,7 +141,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {-2.0, 19.6, -20.8};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis();
         seriesAnalysis.addTemps(temperatureSeries);
-        double[] expResult = {-2.0, 19.6, -20.8, 0.0};
+        double[] expResult = {-2.0, 19.6, -20.8};
 
         double[] actualResult = seriesAnalysis.getTemperatures();
 
