@@ -22,13 +22,14 @@ public class TemperatureSeriesAnalysis {
             temperatures = new double[1];
         }
         else {
-            temperatures = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+            temperatures = Arrays.copyOf(temperatureSeries, 
+                    temperatureSeries.length);
         }
         len = temperatureSeries.length;
     }
 
     public double[] getTemperatures() {
-        return temperatures;
+        return Arrays.copyOf(temperatures, len);
     }
 
     public double average() {
