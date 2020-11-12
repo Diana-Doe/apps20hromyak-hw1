@@ -143,7 +143,7 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.addTemps(temperatureSeries);
         double[] expResult = {-2.0, 19.6, -20.8, 0.0};
 
-        double[] actualResult = seriesAnalysis.temperatures;
+        double[] actualResult = seriesAnalysis.getTemperatures();
 
         assertArrayEquals(expResult, actualResult, 0.00001);
     }
