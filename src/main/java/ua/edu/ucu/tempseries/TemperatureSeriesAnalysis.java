@@ -5,9 +5,9 @@ import java.util.stream.DoubleStream;
 
 
 public class TemperatureSeriesAnalysis {
-    static final int minTemp = -273;
-    public double[] temperatures;
-    public int len;
+    static final int MIN_TEMP = -273;
+    private double[] temperatures;
+    private int len;
 
     public TemperatureSeriesAnalysis() {
         temperatures = new double[1];
@@ -15,16 +15,20 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        if (DoubleStream.of(temperatureSeries).anyMatch(x -> x < minTemp)) {
+        if (DoubleStream.of(temperatureSeries).anyMatch(x -> x < MIN_TEMP)) {
             throw new IllegalArgumentException("Temperature less than -273!");
         }
         if (temperatureSeries.length == 0) {
             temperatures = new double[1];
         }
         else {
-            temperatures = temperatureSeries;
+            temperatures = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
         }
         len = temperatureSeries.length;
+    }
+
+    public double[] getTemperatures() {
+        return temperatures;
     }
 
     public double average() {
@@ -45,7 +49,7 @@ public class TemperatureSeriesAnalysis {
         double average = average();
         double count = 0;
         for (int i = 0; i < len; i++) {
-            count += Math.pow(temperatures[i] - average, 2);
+            count += (temperatures[i] - average) * (temperatures[i] - average);
         }
         return Math.sqrt(count / len);
     }
@@ -56,8 +60,9 @@ public class TemperatureSeriesAnalysis {
         }
         double min = temperatures[0];
         for (int i = 1; i < len; i++) {
-            if (temperatures[i] < min)
+            if (temperatures[i] < min) {
                 min = temperatures[i];
+            }
         }
         return min;
     }
@@ -115,8 +120,9 @@ public class TemperatureSeriesAnalysis {
         double[] greatTemps = new double[len];
         int j = 0;
         for (int i = 0; i < len; i++) {
-            if (temperatures[i] > tempValue)
+            if (temperatures[i] > tempValue) {
                 greatTemps[j++] = temperatures[i];
+            }
         }
         return Arrays.copyOf(greatTemps, j);
     }
@@ -129,7 +135,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        if (DoubleStream.of(temps).anyMatch(x -> x < minTemp)) {
+        if (DoubleStream.of(temps).anyMatch(x -> x < MIN_TEMP)) {
             throw new IllegalArgumentException("Temperature less than -273");
         }
         while (temperatures.length - len < temps.length) {
