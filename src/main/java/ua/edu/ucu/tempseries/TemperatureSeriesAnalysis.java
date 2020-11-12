@@ -3,7 +3,7 @@ package ua.edu.ucu.tempseries;
 import java.util.Arrays;
 import java.util.stream.DoubleStream;
 import java.lang.IllegalArgumentException;
-import java.lang.Math.*;
+
 
 public class TemperatureSeriesAnalysis {
     public double[] temperatures;
@@ -125,7 +125,6 @@ public class TemperatureSeriesAnalysis {
         for (double temp : temps) {
             temperatures[len++] = temp;
         }
-        System.out.println(Arrays.toString(temperatures));
         return 0;
     }
 }
