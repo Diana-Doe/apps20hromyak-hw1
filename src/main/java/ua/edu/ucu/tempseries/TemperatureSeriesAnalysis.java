@@ -145,6 +145,6 @@ public class TemperatureSeriesAnalysis {
         for (double temp : temps) {
             temperatures[len++] = temp;
         }
-        return 0;
+        return len;
     }
 }
